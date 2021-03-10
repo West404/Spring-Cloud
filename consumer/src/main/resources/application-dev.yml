@@ -1,0 +1,39 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+user-service:
+  ribbon:
+    # 负载均衡策略:随机
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        # 熔断触发最小请求次数,默认20
+        requestVolumeThreshold: 10
+        # 熔断后休眠时长,默认5000ms
+        sleepWindowInMilliseconds: 10000
+        # 触发熔断的阈值百分比,默认50
+        errorThresholdPercentage: 50
+      execution:
+        isolation:
+          thread:
+            # 熔断超时设置:默认1000ms
+            timeoutInMilliseconds: 2000
+ribbon:
+  # 读取超时时长
+  ReadTimeout: 2000
+  # 监理连接的超时时长
+  ConnectTimeout: 1000
+  # 当前服务器的重试次数
+  MaxAutoRetries: 0
+  # 重试多少次服务
+  MaxAutoRetriesNextServer: 0
+  # 是否对所有请求方式都重试
+  OkToRetryOnAllOperations: false

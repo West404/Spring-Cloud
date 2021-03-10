@@ -1,0 +1,16 @@
+server:
+  port: 9091
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: 123456
+  application:
+    name: user-service
+mybatis:
+  type-aliases-package: com.isoftstone.user.domain
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka,http://127.0.0.1:10087/eureka
